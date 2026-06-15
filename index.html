@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bypass</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            text-align: center;
+            background: linear-gradient(45deg, #ff4500, #ffaa00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Video Gallery Grid Layout */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        /* Card container for each video */
+        .video-card {
+            background-color: #1e1e1e;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(255, 69, 0, 0.2);
+        }
+
+        video {
+            width: 100%;
+            display: block;
+            border-bottom: 3px solid #ff4500;
+            background-color: #000;
+        }
+
+        .video-info {
+            padding: 15px;
+        }
+
+        .video-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: #ececec;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>School BP</h1>
+
+    <div class="video-grid">
+        
+        <div class="video-card">
+            <video src="Beluga.mp4" controls preload="metadata">
+                Your browser does not support the video tag.
+            </video>
+            <div class="video-info">
+                <h3>Beluga</h3>
+            </div>
+        </div>
+
+        <div class="video-card">
+            <video src="wii.mp4" controls preload="metadata">
+                Your browser does not support the video tag.
+            </video>
+            <div class="video-info">
+                <h3>Wii</h3>
+            </div>
+        </div>
+
+        <div class="video-card">
+            <video src="memes.mp4" controls preload="metadata">
+                Your browser does not support the video tag.
+            </video>
+            <div class="video-info">
+                <h3>Memes</h3>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
