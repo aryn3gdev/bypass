@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School BP</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            text-align: center;
+            background: linear-gradient(45deg, #ff4500, #ffaa00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .search-container {
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 25px;
+            border: 1px solid #333;
+            background-color: #222;
+            color: #fff;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar:focus {
+            border-color: #ff4500;
+            box-shadow: 0 0 10px rgba(255, 69, 0, 0.3);
+            background-color: #2a2a2a;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .video-card {
+            background-color: #1e1e1e;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(255, 69, 0, 0.2);
+        }
+
+        video {
+            width: 100%;
+            display: block;
+            border-bottom: 3px solid #ff4500;
+            background-color: #000;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+        }
+
+        .video-info {
+            padding: 15px;
+        }
+
+        .video-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: #ececec;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .no-results {
+            display: none;
+            text-align: center;
+            color: #888;
+            margin-top: 50px;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>School BP</h1>
+
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-bar" placeholder="Search videos...">
+    </div>
+
+    <div id="videoContainer" class="video-grid"></div>
+    <div id="noResults" class="no-results">No videos found matching your search.</div>
+
+    <script>
+        // ============================================================
+        // STEP 1: ADD YOUR FILES HERE
+        // Just copy the list below and add your filenames inside the quotes.
+        // The title will automatically match the filename if you don't add one.
+        // ============================================================
+        const videoList = [
+            "Beluga.mp4",
+            "BeamNG Prop Hunt but that CLEARLY ain't me.mp4",
+            "I engineered a missile launch system to fit in an Altoids tin (It works!!).mp4",
+            "I spent $10,000 on Kickstarter Tech.mp4",
+            "ipad.mp4",
+            "Making a HOA legal minecraft house.mp4",
+            "memes.mp4",
+            "When Autocorrect Forces You To Be 100% Honest.mp4",
+            "Minecraft Footage Smuggled Out Of North Korea.mp4"
+
+            // ADD MORE HERE: "new_video.mp4",
+        ];
+
+        // ============================================================
+        // NO NEED TO EDIT BELOW THIS LINE
+        // ============================================================
+        
+        const container = document.getElementById('videoContainer');
+        const searchInput = document.getElementById('searchInput');
+        const noResults = document.getElementById('no-results');
+
+        function renderVideos(filterText = '') {
+            container.innerHTML = '';
+            const lowerFilter = filterText.toLowerCase();
+            let hasResults = false;
+
+            videoList.forEach(filename => {
+                // Clean up the filename for display (remove .mp4, replace underscores with spaces)
+                const displayTitle = filename.replace('.mp4', '').replace(/_/g, ' ');
+                
+                if (displayTitle.toLowerCase().includes(lowerFilter)) {
+                    const card = document.createElement('div');
+                    card.className = 'video-card';
+                    
+                    card.innerHTML = `
+                        <video src="${filename}" controls preload="metadata">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-info">
+                            <h3>${displayTitle}</h3>
+                        </div>
+                    `;
+                    
+                    container.appendChild(card);
+                    hasResults = true;
+                }
+            });
+
+            // Show "No results" if nothing matches
+            if (!hasResults) {
+                document.getElementById('noResults').style.display = 'block';
+            } else {
+                document.getElementById('noResults').style.display = 'none';
+            }
+        }
+
+        // Search Functionality
+        searchInput.addEventListener('input', (e) => {
+            renderVideos(e.target.value);
+        });
+
+        // Initial Load
+        renderVideos();
+    </script>
+
+</body>
+</html>
